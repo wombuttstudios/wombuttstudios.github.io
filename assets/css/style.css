@@ -1,0 +1,330 @@
+/* ==========================================================================
+   Wombutt Studios — shared stylesheet
+   Two palettes, one system:
+     - Studio theme (default, on <body>): warm, brown, paper-like
+     - Game theme  (<body class="theme-game">): cool, monochrome blue, zen
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap');
+
+:root {
+  /* Studio palette */
+  --bg: #F7F2EB;
+  --surface: #FFFFFF;
+  --text: #2B2019;
+  --muted: #7A6A5D;
+  --accent: #9C6B4F;
+  --accent-2: #5B4636;
+  --border: #E4DACD;
+
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Work Sans', -apple-system, sans-serif;
+
+  --radius: 6px;
+  --max-width: 880px;
+}
+
+body.theme-game {
+  /* Game palette — swaps the same variable names */
+  --bg: #b5d3f1; /* Highlight: #96b0c9; Original: #EAF0F4; */
+  --surface:#FFFFFF;
+  --text: #1B2A33;
+  --muted: #5B7382;
+  --accent: #3D6E8C;
+  --accent-2: #17303D;
+  --border: #3D6E8C; /* #D3E0E7; */
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+
+a {
+  color: var(--accent-2);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+a:hover { color: var(--accent); }
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.wrap {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---- Header / nav ---- */
+.site-header {
+  padding: 28px 0 0;
+}
+.nav {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--border);
+}
+.brand {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 2.0rem;
+  color: var(--text);
+  text-decoration: none;
+}
+.brand img {
+  width: 128px;
+  height: 128px;
+  object-fit: contain;
+}
+.nav-links {
+  display: flex;
+  gap: 22px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.95rem;
+}
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+}
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--accent-2);
+}
+
+/* ---- Hero ---- */
+.hero {
+  padding: 64px 0 40px;
+}
+.hero-eyebrow {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.1rem, 5vw, 3.1rem);
+  font-weight: 600;
+  line-height: 1.12;
+  margin: 0 0 18px;
+  color: var(--text);
+}
+.hero p.lede {
+  font-size: 1.15rem;
+  color: var(--muted);
+  max-width: 60ch;
+  margin: 0 0 28px;
+}
+.hero-art {
+  display: flex;
+  gap: 18px;
+  margin-top: 8px;
+}
+.hero-art img {
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+/* ---- Buttons ---- */
+.btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: var(--radius);
+  font-weight: 500;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: transform 0.12s ease, background 0.12s ease;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-primary {
+  background: var(--accent-2);
+  color: #fff;
+}
+.btn-primary:hover { background: var(--accent); color: #fff; }
+.btn-secondary {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--text);
+}
+.btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+.badge-row { align-items: center; gap: 48px;}
+
+.store-badge {
+  height: 56px;
+  width: auto;
+  transition: opacity 0.12s ease;
+}
+.store-badge:hover { opacity: 0.85; }
+
+
+/* ---- Sections ---- */
+section { padding: 44px 0; }
+section h2 {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.section-sub {
+  color: var(--muted);
+  margin-top: 0;
+  margin-bottom: 28px;
+  max-width: 62ch;
+}
+
+/* ---- Cards / grid ---- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+}
+.card h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  margin: 0 0 8px;
+}
+.card p { color: var(--muted); margin: 0; font-size: 0.95rem; }
+
+/* ---- Banner ---- */
+.feature-banner {
+  display: block;
+  margin: 0 auto 8px;
+  max-width: 860px;
+  width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+/* ---- App icon ---- */
+.title-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 4px;
+}
+.app-icon {
+  width: 84px;
+  height: 84px;
+  border-radius: 20px;
+  border: 5px solid var(--border);
+  flex-shrink: 0;
+}
+
+/* ---- Screenshot strip ---- */
+.shot-strip {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+.shot-strip img {
+  height: 320px;
+  width: auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  flex: 0 0 auto;
+}
+
+/* ---- Social icons ---- */
+.social-row {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.social-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--accent-2);
+  transition: background 0.12s ease;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: 20px;
+  mask-size: 20px;
+}
+.social-icon:hover { background: var(--accent); }
+.footer-social {
+  justify-content: center;
+  margin-bottom: 22px;
+}
+ 
+/* One rule per icon: only the mask-image URL changes. Add a matching class here each time you add a new platform. */
+.social-icon.icon-itch    { -webkit-mask-image: url('../img/social/itchio.svg');    mask-image: url('../img/social/itchio.svg'); }
+.social-icon.icon-discord { -webkit-mask-image: url('../img/social/discord.svg'); mask-image: url('../img/social/discord.svg'); }
+.social-icon.icon-instagram { -webkit-mask-image: url('../img/social/instagram.svg'); mask-image: url('../img/social/instagram.svg'); }
+.social-icon.icon-youtube { -webkit-mask-image: url('../img/social/youtube.svg'); mask-image: url('../img/social/youtube.svg'); }
+.social-icon.icon-tiktok { -webkit-mask-image: url('../img/social/tiktok.svg'); mask-image: url('../img/social/tiktok.svg'); }
+.social-icon.icon-bluesky { -webkit-mask-image: url('../img/social/bluesky.svg'); mask-image: url('../img/social/bluesky.svg'); }
+
+/* ---- Loop divider (signature element) ---- */
+.loop-divider {
+  display: block;
+  width: 100%;
+  height: 28px;
+  margin: 8px 0;
+  color: var(--accent);
+}
+.loop-divider svg { width: 100%; height: 100%; display: block; }
+
+/* ---- Footer ---- */
+.site-footer {
+  padding: 40px 0 60px;
+  border-top: 1px solid var(--border);
+  margin-top: 20px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.site-footer a { color: var(--muted); }
+.site-footer .foot-row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+/* ---- Utility ---- */
+.mt-0 { margin-top: 0; }
+.center { text-align: center; }
+
+@media (max-width: 560px) {
+  .hero-art { flex-direction: column; }
+  .shot-strip img { height: 240px; }
+}
